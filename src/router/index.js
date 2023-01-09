@@ -5,14 +5,16 @@ import Login from '@/views/authentication/Login.vue'
 import Profile from '@/views/Profile.vue'
 import Invoice from '@/views/transactions/Invoice.vue'
 import InvoiceDetail from '@/views/transactions/InvoiceDetail.vue'
+import Orders from '@/views/transactions/Orders.vue'
+import OrderDetail from '@/views/transactions/OrderDetail.vue'
 
 const routes = [
   { path: '/', name: 'Home', component: Home, meta: { requiresAuth: true }, },
   { path: '/about', name: 'About', component: About},
   { path: '/login', name: 'Login', component: Login},
   { path: '/profile', name: 'Profile', component: Profile},
-  { path: '/my-invoices', name: 'Invoice', component: Invoice},
-  { path: '/my-invoices/:name', name: 'InvoiceDetail', component: InvoiceDetail},
+  { path: '/my-orders', name: 'Orders', component: Orders},
+  { path: '/my-orders/:name', name: 'OrderDetail', component: OrderDetail},
 ]
 
 const router = createRouter({
