@@ -9,6 +9,7 @@
   "dependencies": {
     "@leam-tech/renovation-core": "^1.2.4",
     "@vue/devtools": "^5.3.4",
+    "@vuepic/vue-datepicker": "^3.6.4",
     "core-js": "^3.6.5",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",

@@ -1,5 +1,7 @@
 import appConfig from '../.appConfig';
 
+
+
 export default {
     name: 'utils',
     Frappe: class Frappe {
@@ -9,15 +11,20 @@ export default {
             this.headers = {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
+                
             };
+            
             // this.stack = <call stack>;
         }
         async login(body){
 
             let res = await fetch(`${this.url}/api/method/${appConfig.frappe_custom_app}.authentication.login`, {
+                
                 method: 'POST',
+                
                 headers: this.headers,
                 body: JSON.stringify(body)
+                
             })
             let auth = await res.json()
             // console.log('AUTH', auth)
@@ -28,6 +35,7 @@ export default {
                     headers: {'Authorization': `token ${auth.message.token}`}
                 })
                 user = await user.json()
+                console.log('USER', auth.message.token)
                 return await {...user, 'token':auth.message.token}
             } else {
                 return auth.message;
@@ -44,7 +52,7 @@ export default {
         async handleResponse(res){
             if(res.status==200){
                 let data = await res.json();
-                return await {'status_code': res.status, 'data': data.data};
+                return await {'status_code': res.status, 'data': data};
             } else if(res.status==404) {
                 // not found
                 return {'status_code': res.status, 'text': res.statusText}
@@ -82,6 +90,7 @@ export default {
         async new_doc(doctype, body){
             try {
                 this.getHeader();
+                console.log(body)
                 let res = await fetch(`${this.url}/api/resource/${doctype}`, {
                     method: 'POST',
                     headers: this.headers,
@@ -156,6 +165,31 @@ export default {
                 window.location.assign(file);
             } else {
                 this.$popIt.error('Error', res.statusText);
+            }
+        }
+
+        async getSuppllayForecast(){
+            try {
+                this.getHeader();
+                let res = await fetch(`${this.url}/api/method/${appConfig.frappe_custom_app}.api.get_supply_forecast`, {
+                    method: 'GET',
+                    headers: this.headers
+                })
+                return await this.handleResponse(res);
+            } catch (e) {
+                console.log(e)
+            }
+        }
+        async getSuppllayBalance(){
+            try {
+                this.getHeader();
+                let res = await fetch(`${this.url}/api/method/${appConfig.frappe_custom_app}.api.get_supply_balance`, {
+                    method: 'GET',
+                    headers: this.headers
+                })
+                return await this.handleResponse(res);
+            } catch (e) {
+                console.log(e)
             }
         }
     }

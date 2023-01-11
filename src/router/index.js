@@ -7,6 +7,7 @@ import Invoice from '@/views/transactions/Invoice.vue'
 import InvoiceDetail from '@/views/transactions/InvoiceDetail.vue'
 import Orders from '@/views/transactions/Orders.vue'
 import OrderDetail from '@/views/transactions/OrderDetail.vue'
+import OrderForm from '@/views/transactions/OrderForm.vue'
 
 const routes = [
   { path: '/', name: 'Home', component: Home, meta: { requiresAuth: true }, },
@@ -15,6 +16,7 @@ const routes = [
   { path: '/profile', name: 'Profile', component: Profile},
   { path: '/my-orders', name: 'Orders', component: Orders},
   { path: '/my-orders/:name', name: 'OrderDetail', component: OrderDetail},
+  { path: '/new-order', name:'OrderForm',component:OrderForm}
 ]
 
 const router = createRouter({
