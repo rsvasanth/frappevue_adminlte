@@ -192,6 +192,20 @@ export default {
                 console.log(e)
             }
         }
+        async getBalance(){
+            try {
+                this.getHeader();
+                let res = await fetch(`${this.url}/api/method/${appConfig.frappe_custom_app}.api.get_supply`, {
+                    method: 'GET',
+                    headers: this.headers
+                })
+                return await this.handleResponse(res);
+
+
+            }catch(e){
+                console.log(e)
+            }
+        }
     }
 }
 

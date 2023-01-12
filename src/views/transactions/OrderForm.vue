@@ -177,25 +177,26 @@ export default {
     }
     ,
     methods:{
+
         async getsupply(){
-            let res = await this.$frappe.getSuppllayBalance()
+            let res = await this.$frappe.getBalance()
             console.log(res.data.message)
             let data = res.data.message
             this.form = []
             data.forEach(element => {
                 this.form.push({
                     produce_name:element.produce_name,mon_order:0,
-                    mon_avl_qty:element.mon_avl_qty,
+                    mon_avl_qty:element.monday_balance,
                     tue_order:0,
-                    tue_avl_qty:element.tue_avl_qty,
+                    tue_avl_qty:element.tuesday_balance,
                     wed_order:0,
-                    wed_avl_qty:element.wed_avl_qty,
+                    wed_avl_qty:element.wednesday_balance,
                     thu_order:0,
-                    thu_avl_qty:element.thu_avl_qty,
+                    thu_avl_qty:element.thursday_balance,
                     fri_order:0,
-                    fri_avl_qty:element.fri_avl_qty,
+                    fri_avl_qty:element.friday_balance,
                     sat_order:0,
-                    sat_avl_qty:element.sat_avl_qty
+                    sat_avl_qty:element.saturday_balance
                 })
             });
             
@@ -267,6 +268,7 @@ export default {
     mounted() {
         this.getsupply()
         this.createOrder()
+       
     },
 }
 </script>
